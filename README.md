@@ -1,2 +1,2 @@
 # geometry_class
-Hello
+<b>Hello</b>

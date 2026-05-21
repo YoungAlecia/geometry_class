@@ -1,2 +1,2 @@
-# geometry_class
+# Ms Young Geometry Class
 <b>Hello</b>

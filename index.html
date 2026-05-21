@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Geometry Honors — Lab, Calculators &amp; Lesson Toolkit</title>
+  <meta name="description" content="A classroom companion for Geometry Honors: an embedded GeoGebra graphing lab, live area / perimeter / volume calculators, and a step-by-step guide for swapping in custom GeoGebra activities." />
+
+  <!-- Favicon: simplified version of the inline logo -->
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="%231f2a44"/><path d="M16 6 L26 24 L6 24 Z" fill="none" stroke="%23f4c95d" stroke-width="2.4" stroke-linejoin="round"/><circle cx="16" cy="18" r="5" fill="none" stroke="%23ffffff" stroke-width="1.6"/></svg>' />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- GeoGebra deployggb.js: powers the embedded applet on the GeoGebra Lab page -->
+  <script src="https://www.geogebra.org/apps/deployggb.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="#home" class="brand" aria-label="Geometry Honors home">
+        <!-- Custom inline SVG logo: a triangle inscribing a circle (compass + straightedge) -->
+        <svg class="brand-mark" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="46" height="46" rx="10" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
+          <path d="M24 8 L40 36 L8 36 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+          <circle cx="24" cy="28" r="8" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="24" cy="28" r="1.4" fill="var(--accent)"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-title">Geometry Honors</span>
+          <span class="brand-sub">Lab &amp; Toolkit</span>
+        </span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#lab">GeoGebra Lab</a></li>
+          <li><a href="#calculators">Calculators</a></li>
+          <li><a href="#guide">Lesson Integration Guide</a></li>
+          <li><a href="#formulas">Formula Reference</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HOME / HERO -->
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Period 3 &middot; Honors Geometry</p>
+          <h1 id="hero-title">Construct, measure,<br/><span class="accent-underline">and discover.</span></h1>
+          <p class="lede">A classroom companion that pairs a live <strong>GeoGebra</strong> sketchpad with instant area, perimeter, and volume calculators &mdash; designed so teachers can drop in any activity in under a minute.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#lab">Open the Lab</a>
+            <a class="btn btn-ghost" href="#calculators">Try a calculator</a>
+          </div>
+          <dl class="hero-stats" aria-label="At a glance">
+            <div><dt>Shapes covered</dt><dd>4</dd></div>
+            <div><dt>Live formulas</dt><dd>7</dd></div>
+            <div><dt>Setup time</dt><dd>&lt; 1 min</dd></div>
+          </dl>
+        </div>
+
+        <figure class="hero-figure" aria-hidden="true">
+          <!-- Decorative SVG: a geometric composition referencing the curriculum -->
+          <svg viewBox="0 0 320 320" role="img" aria-label="Decorative geometric construction">
+            <defs>
+              <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.18"/>
+              </pattern>
+            </defs>
+            <rect width="320" height="320" fill="url(#grid)" />
+            <circle cx="160" cy="160" r="110" fill="none" stroke="var(--accent)" stroke-width="1.6" />
+            <polygon points="160,55 270,240 50,240" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <polygon points="160,55 270,240 50,240" fill="var(--accent)" opacity="0.07"/>
+            <line x1="160" y1="55" x2="160" y2="240" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+            <circle cx="160" cy="55" r="3.5" fill="currentColor"/>
+            <circle cx="270" cy="240" r="3.5" fill="currentColor"/>
+            <circle cx="50" cy="240" r="3.5" fill="currentColor"/>
+            <text x="156" y="48" font-family="JetBrains Mono, monospace" font-size="11" fill="currentColor">A</text>
+            <text x="278" y="248" font-family="JetBrains Mono, monospace" font-size="11" fill="currentColor">B</text>
+            <text x="36" y="248" font-family="JetBrains Mono, monospace" font-size="11" fill="currentColor">C</text>
+          </svg>
+        </figure>
+      </div>
+    </section>
+
+    <!-- GEOGEBRA LAB -->
+    <section id="lab" class="section section-light" aria-labelledby="lab-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Lab</p>
+          <h2 id="lab-title">GeoGebra Graphing Lab</h2>
+          <p class="section-lede">The applet below loads the default classroom activity. Replace it for any lesson in the <a href="#guide">Integration Guide</a> &mdash; one variable to edit.</p>
+        </header>
+
+        <div class="lab-card">
+          <div class="lab-toolbar" role="group" aria-label="Lab controls">
+            <span class="badge" id="lab-status">Default activity &middot; Linear &amp; Quadratic Graphs</span>
+            <div class="lab-toolbar-actions">
+              <label class="field-inline">
+                <span class="field-inline-label">App</span>
+                <select id="ggb-app-name" aria-label="GeoGebra application">
+                  <option value="graphing" selected>Graphing</option>
+                  <option value="geometry">Geometry</option>
+                  <option value="3d">3D Calculator</option>
+                  <option value="classic">Classic</option>
+                  <option value="suite">Suite</option>
+                </select>
+              </label>
+              <button id="ggb-reload" class="btn btn-secondary btn-sm" type="button">Reload applet</button>
+            </div>
+          </div>
+
+          <!-- Mount point used by deployggb.js (GGBApplet.inject) -->
+          <div id="ggb-element" class="ggb-mount" data-material-id="RHYH3UVE" data-app-name="graphing">
+            <div class="ggb-fallback">
+              <p><strong>Loading GeoGebra&hellip;</strong></p>
+              <p class="muted">If the applet does not appear, ensure you are online or open this page over <code>http(s)://</code> rather than <code>file://</code>.</p>
+            </div>
+          </div>
+
+          <p class="lab-caption">
+            <span class="kbd">Tip</span>
+            Teachers: paste a new material ID into the <a href="#guide">guide below</a> or directly into <code>script.js</code> &rarr; <code>GGB_CONFIG.materialId</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALCULATORS -->
+    <section id="calculators" class="section" aria-labelledby="calc-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Toolkit</p>
+          <h2 id="calc-title">Live Calculators</h2>
+          <p class="section-lede">Results update in real time as students type. Inputs accept positive decimals; invalid entries are flagged and the formula stays visible.</p>
+        </header>
+
+        <div class="calc-grid" id="calc-grid">
+          <!-- Triangle -->
+          <article class="calc-card" data-shape="triangle">
+            <header class="calc-card-head">
+              <svg class="calc-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4 L28 26 L4 26 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              <h3>Triangle</h3>
+            </header>
+            <p class="calc-formula"><strong>Area</strong> = &frac12; &middot; <var>b</var> &middot; <var>h</var> &nbsp;&middot;&nbsp; <strong>Perimeter</strong> = <var>a</var> + <var>b</var> + <var>c</var></p>
+            <div class="calc-inputs">
+              <label>Base <var>b</var><input type="number" min="0" step="any" data-key="base" inputmode="decimal" /></label>
+              <label>Height <var>h</var><input type="number" min="0" step="any" data-key="height" inputmode="decimal" /></label>
+              <label>Side <var>a</var><input type="number" min="0" step="any" data-key="sideA" inputmode="decimal" /></label>
+              <label>Side <var>c</var><input type="number" min="0" step="any" data-key="sideC" inputmode="decimal" /></label>
+            </div>
+            <p class="calc-error" data-role="error" role="alert" hidden></p>
+            <dl class="calc-results" data-role="results">
+              <div><dt>Area</dt><dd data-result="area">&mdash;</dd></div>
+              <div><dt>Perimeter</dt><dd data-result="perimeter">&mdash;</dd></div>
+            </dl>
+          </article>
+
+          <!-- Trapezoid -->
+          <article class="calc-card" data-shape="trapezoid">
+            <header class="calc-card-head">
+              <svg class="calc-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 6 L24 6 L28 26 L4 26 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              <h3>Trapezoid</h3>
+            </header>
+            <p class="calc-formula"><strong>Area</strong> = &frac12;(<var>a</var>+<var>b</var>) &middot; <var>h</var> &nbsp;&middot;&nbsp; <strong>Perimeter</strong> = <var>a</var>+<var>b</var>+<var>c</var>+<var>d</var></p>
+            <div class="calc-inputs">
+              <label>Parallel side <var>a</var><input type="number" min="0" step="any" data-key="a" inputmode="decimal" /></label>
+              <label>Parallel side <var>b</var><input type="number" min="0" step="any" data-key="b" inputmode="decimal" /></label>
+              <label>Height <var>h</var><input type="number" min="0" step="any" data-key="height" inputmode="decimal" /></label>
+              <label>Leg <var>c</var><input type="number" min="0" step="any" data-key="legC" inputmode="decimal" /></label>
+              <label>Leg <var>d</var><input type="number" min="0" step="any" data-key="legD" inputmode="decimal" /></label>
+            </div>
+            <p class="calc-error" data-role="error" role="alert" hidden></p>
+            <dl class="calc-results" data-role="results">
+              <div><dt>Area</dt><dd data-result="area">&mdash;</dd></div>
+              <div><dt>Perimeter</dt><dd data-result="perimeter">&mdash;</dd></div>
+            </dl>
+          </article>
+
+          <!-- Circle -->
+          <article class="calc-card" data-shape="circle">
+            <header class="calc-card-head">
+              <svg class="calc-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="1.5" fill="currentColor"/></svg>
+              <h3>Circle</h3>
+            </header>
+            <p class="calc-formula"><strong>Area</strong> = &pi;<var>r</var>&sup2; &nbsp;&middot;&nbsp; <strong>Circumference</strong> = 2&pi;<var>r</var></p>
+            <div class="calc-inputs">
+              <label>Radius <var>r</var><input type="number" min="0" step="any" data-key="radius" inputmode="decimal" /></label>
+            </div>
+            <p class="calc-error" data-role="error" role="alert" hidden></p>
+            <dl class="calc-results" data-role="results">
+              <div><dt>Area</dt><dd data-result="area">&mdash;</dd></div>
+              <div><dt>Circumference</dt><dd data-result="circumference">&mdash;</dd></div>
+            </dl>
+          </article>
+
+          <!-- Sphere -->
+          <article class="calc-card" data-shape="sphere">
+            <header class="calc-card-head">
+              <svg class="calc-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2"/><ellipse cx="16" cy="16" rx="12" ry="4" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.6"/></svg>
+              <h3>Sphere</h3>
+            </header>
+            <p class="calc-formula"><strong>Volume</strong> = &frac43;&pi;<var>r</var>&sup3; &nbsp;&middot;&nbsp; <strong>Surface area</strong> = 4&pi;<var>r</var>&sup2;</p>
+            <div class="calc-inputs">
+              <label>Radius <var>r</var><input type="number" min="0" step="any" data-key="radius" inputmode="decimal" /></label>
+            </div>
+            <p class="calc-error" data-role="error" role="alert" hidden></p>
+            <dl class="calc-results" data-role="results">
+              <div><dt>Volume</dt><dd data-result="volume">&mdash;</dd></div>
+              <div><dt>Surface area</dt><dd data-result="surface">&mdash;</dd></div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LESSON INTEGRATION GUIDE -->
+    <section id="guide" class="section section-light" aria-labelledby="guide-title">
+      <div class="container guide-grid">
+        <header class="section-head">
+          <p class="eyebrow">For teachers</p>
+          <h2 id="guide-title">Lesson Integration Guide</h2>
+          <p class="section-lede">Swap the default GeoGebra activity for any classroom material in five short steps.</p>
+        </header>
+
+        <ol class="steps">
+          <li>
+            <h3>Find the material on GeoGebra</h3>
+            <p>Sign in at <a href="https://www.geogebra.org/materials" target="_blank" rel="noopener">geogebra.org/materials</a> and open any resource. The URL ends with the <strong>material ID</strong>, e.g. <code>geogebra.org/m/<mark>RHYH3UVE</mark></code>.</p>
+          </li>
+          <li>
+            <h3>Copy the material ID</h3>
+            <p>The ID is the alphanumeric segment after <code>/m/</code>. Material IDs are usually 8&ndash;12 characters.</p>
+          </li>
+          <li>
+            <h3>Paste it into the lab loader</h3>
+            <p>Two equivalent options:</p>
+            <details open>
+              <summary><strong>Option A &mdash; quick swap in the page</strong></summary>
+              <div class="swap-tool">
+                <label for="swap-id">Material ID</label>
+                <input id="swap-id" type="text" placeholder="e.g. RHYH3UVE" autocomplete="off" spellcheck="false" />
+                <label for="swap-app">App</label>
+                <select id="swap-app">
+                  <option value="graphing">Graphing</option>
+                  <option value="geometry">Geometry</option>
+                  <option value="3d">3D</option>
+                  <option value="classic">Classic</option>
+                  <option value="suite">Suite</option>
+                </select>
+                <button id="swap-apply" class="btn btn-primary btn-sm" type="button">Load in Lab</button>
+                <p class="muted swap-msg" id="swap-msg" aria-live="polite"></p>
+              </div>
+            </details>
+            <details>
+              <summary><strong>Option B &mdash; edit <code>script.js</code> permanently</strong></summary>
+<pre><code>// script.js
+const GGB_CONFIG = {
+  materialId: "<mark>YOUR_MATERIAL_ID</mark>",
+  appName: "graphing",     // graphing | geometry | 3d | classic | suite
+  showToolBar: true,
+  showAlgebraInput: true,
+  showMenuBar: false
+};</code></pre>
+            </details>
+          </li>
+          <li>
+            <h3>(Optional) Use the iframe pattern instead</h3>
+            <p>If a sketch refuses to load via the API, GeoGebra also offers a direct iframe embed. Replace the mount element with:</p>
+<pre><code>&lt;iframe
+  src="https://www.geogebra.org/material/iframe/id/<mark>YOUR_ID</mark>"
+  width="100%" height="600"
+  style="border:0" allowfullscreen
+  title="GeoGebra activity"&gt;&lt;/iframe&gt;</code></pre>
+          </li>
+          <li>
+            <h3>Verify in class</h3>
+            <p>Reload the page, open <a href="#lab">GeoGebra Lab</a>, and confirm the activity title appears. Encourage students to use the toolbar &mdash; everything keyboard navigates with <span class="kbd">Tab</span>.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FORMULA REFERENCE -->
+    <section id="formulas" class="section" aria-labelledby="formula-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Reference</p>
+          <h2 id="formula-title">Formula Reference Card</h2>
+          <p class="section-lede">Printable summary of every formula the calculators use.</p>
+        </header>
+
+        <div class="table-wrap">
+          <table class="formula-table">
+            <thead>
+              <tr><th scope="col">Shape</th><th scope="col">Quantity</th><th scope="col">Formula</th><th scope="col">Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><th rowspan="2" scope="row">Triangle</th><td>Area</td><td><code>A = &frac12; &middot; b &middot; h</code></td><td>Base &amp; perpendicular height</td></tr>
+              <tr><td>Perimeter</td><td><code>P = a + b + c</code></td><td>Sum of the three sides</td></tr>
+              <tr><th rowspan="2" scope="row">Trapezoid</th><td>Area</td><td><code>A = &frac12;(a + b) &middot; h</code></td><td><var>a</var>, <var>b</var> are parallel sides</td></tr>
+              <tr><td>Perimeter</td><td><code>P = a + b + c + d</code></td><td>Sum of all four sides</td></tr>
+              <tr><th rowspan="2" scope="row">Circle</th><td>Area</td><td><code>A = &pi;r&sup2;</code></td><td>&nbsp;</td></tr>
+              <tr><td>Circumference</td><td><code>C = 2&pi;r</code></td><td>&nbsp;</td></tr>
+              <tr><th rowspan="2" scope="row">Sphere</th><td>Volume</td><td><code>V = &frac43;&pi;r&sup3;</code></td><td>&nbsp;</td></tr>
+              <tr><td>Surface area</td><td><code>S = 4&pi;r&sup2;</code></td><td>&nbsp;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Geometry Honors Classroom &middot; Built for teachers, free to adapt.</p>
+      <p class="muted">GeoGebra is a trademark of GeoGebra GmbH. This site embeds public GeoGebra materials per their <a href="https://www.geogebra.org/license" target="_blank" rel="noopener">license terms</a>.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>
